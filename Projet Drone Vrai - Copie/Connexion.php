@@ -20,8 +20,8 @@
             </fieldset>
             <div class="row text-start" style="padding: 0px;">
                 <div class="col-md-6" id="message-2" style="width: 682px;">
-                    <div class="has-feedback form-group mb-3" style="width: 350px;"><label class="form-label" style="font-size: 20px;">Email</label><input class="form-control" type="text" name="Email" style="width: 300px;height: 30px;"></div>
-                    <div class="has-feedback form-group mb-3"><label class="form-label" style="font-size: 20px;">Mot de passe</label><input class="form-control" type="text" name="MDP" style="width: 300px;height: 30px;"></div>
+                    <div class="has-feedback form-group mb-3" style="width: 350px;"><label class="form-label" for="from_name" style="font-size: 20px;">Email</label><input class="form-control" type="text" name="Email" style="width: 300px;height: 30px;"></div>
+                    <div class="has-feedback form-group mb-3"><label class="form-label" for="from_phone" style="font-size: 20px;">Mot de passe</label><input class="form-control" type="text" name="MDP" style="width: 300px;height: 30px;"></div>
                 </div>
             </div>
             <div class="row text-center d-xl-flex justify-content-xl-start">
@@ -34,3 +34,36 @@
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+<?php
+include("fonctions.php");
+if (isset ($_GET['valider'])) {
+    $dsn = 'mysql:host=localhost;dbname=thermodrone';
+
+    $user = 'root';
+    $password = 'issam93@';
+
+
+    //On se connecte
+    $con = connectMaBase();
+
+    $query = "SELECT MDP,Email FROM thermodrone.inscription WHERE MDP=? AND Email=?";
+    $stmt = $con->prepare($query);
+    if (isset($stmt)) {
+        $stmt->bind_param('ss',$_GET['MDP'],$_GET['Email']);
+        $stmt->execute();
+        //prend les reponse
+        $stmt->bind_result($field1, $field2);
+        while ($stmt->fetch()) {
+            $tab = array($field1, $field2);
+        }
+        if (!empty($tab)) {
+            header('location:index.html');
+        } else {
+            echo "Mot de passe faux";
+        }
+        $stmt->close();
+    }
+}
+
+?>
