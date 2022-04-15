@@ -36,6 +36,7 @@ include("fonctions.php");
             <div class="row text-center d-xl-flex justify-content-xl-start">
                 <div class="col"><button class="btn btn-primary text-center d-block w-100" type="submit" style="width: 300px;height: 45px;margin: 25px;margin-top: 0px;background-color: #ff0000;">Annuler<i class="typcn typcn-delete-outline"></i></button></div>
                 <div class="col text-start d-xl-flex" style="padding-right: 50px;"><button class="btn btn-primary text-center d-block w-100" type="submit" name="valider" style="width: 300px;height: 45px;margin: 0px;margin-top: 0px;">Envoyer<i class="fa fa-chevron-circle-right"></i></button></div>
+                <div class="col text-start d-xl-flex" style="padding-right: 50px;" class="btn btn-primary text-center d-block w-100" class="nav-item"><a class="nav-link" href="Connexion.php">DEJA INSCRIT</a><i class="fa fa-chevron-circle-right"></i></div>
             </div>
         </form>
     </div>
@@ -63,9 +64,16 @@ if (isset ($_POST['valider'])){
     (Message qui intègrera les causes d'erreur sql)*/
     mysqli_query ($con,$sql) or die ('Erreur SQL !'.$sql.'<br />'.mysqli_error($con));
 
+    header('Location: connexion.php');
+
+
     // on ferme la connexion
     mysqli_close($con);
 }
+
+
+
+
 ?>
 
 

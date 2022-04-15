@@ -1,65 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Bootstrap 4 - Payment Form</title>
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/styles.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Acheter via PayPal</title>
 </head>
 <body>
-<div class="container py-5">
 
-  <div class="row">
-    <div class="col-lg-7 mx-auto">
-      <div class="bg-white rounded-lg shadow-sm p-5">
-      
+<h1>Votre panier :</h1>
 
-	  <!-- Credit card form tabs -->
-        <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
-          
-          <li class="nav-item">
-            <a data-toggle="pill" href="#nav-tab-paypal" class="nav-link rounded-pill">
-                                <i class="fa fa-paypal"></i>
-                                Paypal
-                            </a>
-        
-          </li>
-        </ul>
-        <!-- End -->
+<!-- Le produit  -->
+<h2>Le produit  - 150 €</h2>
+<p>Description du produit </p>
+<hr>
 
 
-       
+<!-- Le conteneur des boutons PayPal -->
+<div id="paypal-boutons"></div>
 
-          
+<!-- 1. Importation de la SDK JavaScript PayPal -->
+<script src="https://www.paypal.com/sdk/js?client-id=ARihLWW7p_qff_fIs8w6Dzoxz_9KxNmlZa6SHBcAZLDn1vmID00O9pX2C6kZRLqVInLIT_Wys3C7W0Bs"></script>
+<script>
+    // 2. Afficher le bouton PayPal
+    paypal.Buttons({
 
-          <!-- Paypal info -->
-          <div id="nav-tab-paypal" class="tab-pane fade">
-            <p>Paypal est le moyen le plus simple de payer en ligne</p>
-            <p>
-              <button type="button" class="btn btn-primary rounded-pill"><i class="fa fa-paypal mr-2"></i> Log into my Paypal</button>
-            </p>
-            <p class="text-muted">* Gratuit (lorsqu’aucune conversion de devise n’est nécessaire) pour les envois d’argent en euros au sein de l’EEE. Le bénéficiaire devra ouvrir un compte PayPal. S'il n'en possède pas déjà un, nous pouvons l'aider à en ouvrir un gratuitement.
-** Profitez de la Protection des Achats sur vos achats éligibles. Soumis à conditions.
-*** Retours remboursés : soumis à conditions
-**** Sous réserve d'acceptation par PayPal et soumis à conditions. Offre de financement avec apport obligatoire et réservée aux particuliers. 
-Crédit sur une durée de 3 mois. Vous disposez d'un délai de rétractation de 14 jours pour renoncer à votre crédit.
-Le prêteur est PayPal (Europe) S.à rl et Cie, SCA, 22-24 Boulevard Royal, L-2449 Luxembourg.
-            </p>
-          </div>
-          <!-- End -->
+        // 3. Configurer la transaction
+        createOrder : function (data, actions) {
 
+            // Les produits à payer avec leurs details
+            var produits = [
+                {
+                    name : "Produit ",
+                    description : "Description du produit ",
+                    quantity : 1,
+                    unit_amount : { value : 150, currency_code : "USD" }
+                }
+            ];
 
-          <!-- End -->
-        </div>
-        <!-- End -->
+            // Le total des produits
+            var total_amount = produits.reduce(function (total, product) {
+                return total + product.unit_amount.value * product.quantity;
+            }, 0);
 
-      </div>
-    </div>
-  
+            // La transaction
+            return actions.order.create({
+                purchase_units : [{
+                    items : produits,
+                    amount : {
+                        value : total_amount,
+                        currency_code : "USD",
+                        breakdown : {
+                            item_total : { value : total_amount, currency_code : "USD" }
+                        }
+                    }
+                }]
+            });
+        },
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/script.min.js"></script>
+        // 4. Capturer la transaction après l'approbation de l'utilisateur
+        onApprove : function (data, actions) {
+            return actions.order.capture().then(function(details) {
+
+                // Afficher Les details de la transaction dans la console
+                console.log(details);
+
+                // On affiche un message de succès
+                alert(details.payer.name.given_name + ' ' + details.payer.name.surname + ', votre transaction est effectuée. Vous allez recevoir une notification très bientôt lorsque nous validons votre paiement.');
+
+            });
+        },
+
+        // 5. Annuler la transaction
+        onCancel : function (data) {
+            alert("Transaction annulée !");
+        }
+
+    }).render("#paypal-boutons");
+
+</script>
 </body>
 </html>

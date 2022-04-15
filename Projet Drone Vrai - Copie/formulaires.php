@@ -15,13 +15,13 @@ include("fonctions.php");
 if (isset ($_POST['valider'])){
     //On récupère les valeurs entrées par l'utilisateur :
     $Email=$_POST['Email'];
-    $lieu=$_POST['Domicile'];
+    $lieu=$_POST['Lieu'];
 
     //On se connecte
     $con = connectMaBase();
 
     //On prépare la commande sql d'insertion
-    $sql = 'INSERT INTO inscription (Email, Domicile)  VALUES("'.$MDP.'","'.$Nom.'","'.$Prenom.'","'.$Email.'","'.$Telephone.'","'.$Domicile.'")';
+    $sql = 'INSERT INTO inscription (Email, Lieu)  VALUES("'.$Email.'","'.$lieu.'")';
 
     /*on lance la commande (mysql_query) et au cas où,
     on rédige un petit message d'erreur si la requête ne passe pas (or die)

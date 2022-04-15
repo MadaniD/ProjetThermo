@@ -26,7 +26,8 @@
             </div>
             <div class="row text-center d-xl-flex justify-content-xl-start">
                 <div class="col"><button class="btn btn-primary text-center d-block w-100" type="submit" style="width: 300px;height: 45px;margin: 25px;margin-top: 0px;background-color: #ff0000;">Annuler<i class="typcn typcn-delete-outline"></i></button></div>
-                <input type="submit" name="valider" value="OK"/>
+                <div class="col"><button class="btn btn-primary text-center d-block w-100" type="submit" name="valider" style="width: 300px;height: 45px;margin: 25px;margin-top: 0px;background-color: #ff0000;">Envoyer<i class="typcn typcn-delete-outline"></i></button></div>
+                <div class="col text-start d-xl-flex" style="padding-right: 50px;" class="btn btn-primary text-center d-block w-100" class="nav-item"><a class="nav-link" href="Inscription.php">CREER UN COMPTE</a><i class="fa fa-chevron-circle-right"></i></div>
             </div>
         </form>
     </div>
@@ -50,6 +51,7 @@ if (isset ($_GET['valider'])) {
     $query = "SELECT MDP,Email FROM thermodrone.inscription WHERE MDP=? AND Email=?";
     $stmt = $con->prepare($query);
     if (isset($stmt)) {
+        //Compare les donnees rentrer par le client avec la bdd
         $stmt->bind_param('ss',$_GET['MDP'],$_GET['Email']);
         $stmt->execute();
         //prend les reponse
@@ -58,7 +60,9 @@ if (isset ($_GET['valider'])) {
             $tab = array($field1, $field2);
         }
         if (!empty($tab)) {
-            header('location:index.html');
+            session_start();
+            $_SESSION['Email']=$field2;
+            header('location:index2.php');
         } else {
             echo "Mot de passe faux";
         }
