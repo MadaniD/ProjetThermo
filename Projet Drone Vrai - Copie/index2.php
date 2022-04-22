@@ -25,7 +25,7 @@ session_start();
                 <li class="nav-item"></li>
                 <li class="nav-item"><a class="nav-link" href="Acheter.html">Acheter</a></li>
                 <li class="nav-item"><a class="nav-link" href="Deconnexion.php">Deconnexion</a></li>
-                <li class="nav-item"><a class="nav-link" href="Profil.php"><?php echo ' Bienvenue ' . $_SESSION['Email'] . ' !' ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="Profil.php"><?php echo ' Bienvenue ' . $_SESSION['Email'] . ' !' ?> </a></li>
             </ul>
         </div>
     </div>

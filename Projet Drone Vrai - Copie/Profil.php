@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 session_start();
 include("fonctions.php");
@@ -5,7 +6,7 @@ $dsn = 'mysql:host=localhost ;dbname=thermodrone' ;
 $user ='root' ;
 $password ='issam93@';
 
-if(isset($_GET['id']) AND $_GET['id'] > 0) {
+if(isset($_GET['Email']) AND $_GET['MDP'] > 0) {
     $getid = intval($_GET['id']);
     $requser = $dsn->prepare('SELECT * FROM membres WHERE id = ?');
     $requser->execute(array($getid));
