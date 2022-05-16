@@ -39,16 +39,16 @@
 <?php
 include("fonctions.php");
 if (isset ($_GET['valider'])) {
-    $dsn = 'mysql:host=localhost;dbname=thermodrone';
+    $dsn = 'mysql:host=51.210.151.13;dbname=thermoDrone';
 
-    $user = 'root';
+    $user = 'thermodrone';
     $password = 'issam93@';
 
 
     //On se connecte
     $con = connectMaBase();
 
-    $query = "SELECT MDP,Email FROM thermodrone.inscription WHERE MDP=? AND Email=?";
+    $query = "SELECT password,email FROM thermoDrone.CompteClients WHERE password=? AND email=?";
     $stmt = $con->prepare($query);
     if (isset($stmt)) {
         //Compare les donnees rentrer par le client avec la bdd

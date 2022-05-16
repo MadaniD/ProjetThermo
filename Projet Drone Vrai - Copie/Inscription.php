@@ -30,7 +30,6 @@ include("fonctions.php");
                 <div class="col-md-6" id="message-2" style="width: 682px;">
                     <div class="has-feedback form-group mb-3" style="width: 350px;"><label class="form-label"  style="font-size: 20px;">Email</label><input class="form-control" type="text" name="Email" style="width: 300px;height: 30px;"></div>
                     <div class="has-feedback form-group mb-3"><label class="form-label"  style="font-size: 20px;">Mot de passe</label><input class="form-control" type="text" name="MDP" style="width: 300px;height: 30px;"></div>
-                    <div class="text-start has-feedback form-group mb-3" style="height: 75px;"><label class="form-label text-start"  style="font-size: 20px;">Domicile</label><input class="form-control" type="text" name="Domicile" style="width: 750px;height: 30px;"></div>
                 </div>
             </div>
             <div class="row text-center d-xl-flex justify-content-xl-start">
@@ -57,7 +56,7 @@ if (isset ($_POST['valider'])){
     $con = connectMaBase();
 
     //On prépare la commande sql d'insertion
-    $sql = 'INSERT INTO inscription (MDP, Nom, Prenom, Email, Telephone, Domicile)  VALUES("'.$MDP.'","'.$Nom.'","'.$Prenom.'","'.$Email.'","'.$Telephone.'","'.$Domicile.'")';
+    $sql = 'INSERT INTO CompteClients (password, lastname, name, email, telephone)  VALUES("'.$MDP.'","'.$Nom.'","'.$Prenom.'","'.$Email.'","'.$Telephone.'")';
 
     /*on lance la commande (mysql_query) et au cas où,
     on rédige un petit message d'erreur si la requête ne passe pas (or die)

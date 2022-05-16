@@ -8,20 +8,24 @@ include("fonctions.php");
 <h2>Entrez les données demandées :</h2>
 <form name="inscription" method="post" action="formulaires.php">
     Entrez votre Email : <input type="text" name="Email"/><br/>
-    Entrez votre Domicile : <input type="text" name="Domicile"/><br/>
-    <input type="submit" name="valider" value="OK"/>
+    Entrez des info pour la commande si necessaire : <input type="text" name="infocommande"/><br/>
+    Entrez votre Domicile : <input type="text" name="Lieu"/><br/>
+    <input type="submit" name="valider" value="OK" href="Payment/Payment.html"/>
 </form>
 <?php
 if (isset ($_POST['valider'])){
     //On récupère les valeurs entrées par l'utilisateur :
     $Email=$_POST['Email'];
+    $infocommande=$_POST['infocommande'];
     $lieu=$_POST['Lieu'];
 
     //On se connecte
     $con = connectMaBase();
 
     //On prépare la commande sql d'insertion
-    $sql = 'INSERT INTO inscription (Email, Lieu)  VALUES("'.$Email.'","'.$lieu.'")';
+    $sql = 'INSERT INTO Commande (idCommande, infocommande, lieu, CompteClients_email)  VALUES("'.$infocommande.'","'.$lieu.'","'.$Email.'")';
+
+
 
     /*on lance la commande (mysql_query) et au cas où,
     on rédige un petit message d'erreur si la requête ne passe pas (or die)
