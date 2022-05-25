@@ -21,9 +21,9 @@ if (isset ($_POST['valider'])){
 
     //On se connecte
     $con = connectMaBase();
-
+    $random=9;
     //On prépare la commande sql d'insertion
-    $sql = 'INSERT INTO Commande (idCommande, infocommande, lieu, CompteClients_email)  VALUES("'.$infocommande.'","'.$lieu.'","'.$Email.'")';
+    $sql = 'INSERT INTO Commande (idCommande, infocommande, lieu, CompteClients_email)  VALUES("'.$random.'","'.$infocommande.'","'.$lieu.'","'.$Email.'")';
 
 
 
@@ -34,7 +34,10 @@ if (isset ($_POST['valider'])){
 
     // on ferme la connexion
     mysqli_close($con);
+
+    header('location:Acheter.html');
 }
+
 ?>
 </body>
 </html>

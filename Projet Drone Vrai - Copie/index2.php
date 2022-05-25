@@ -23,7 +23,7 @@ session_start();
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"></li>
                 <li class="nav-item"></li>
-                <li class="nav-item"><a class="nav-link" href="Acheter.html">Acheter</a></li>
+                <li class="nav-item"><a class="nav-link" href="formulaires.php">Acheter</a></li>
                 <li class="nav-item"><a class="nav-link" href="Deconnexion.php">Deconnexion</a></li>
                 <li class="nav-item"><a class="nav-link" href="Profil.php"><?php echo ' Bienvenue ' . $_SESSION['Email'] . ' !' ?> </a></li>
             </ul>
