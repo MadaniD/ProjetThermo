@@ -76,8 +76,9 @@ if (isset ($_POST['valider'])){
     //On se connecte
     $con = connectMaBase();
     $random=rand(10 , 500 );
+    $etat="non";
     //On prépare la commande sql d'insertion
-    $sql = 'INSERT INTO Commande (idCommande, infocommande, lieu, CompteClients_email)  VALUES("'.$random.'","'.$infocommande.'","'.$lieu.'","'.$Email.'")';
+    $sql = 'INSERT INTO Commande (idCommande, infocommande, lieu, CompteClients_email,etat)  VALUES("'.$random.'","'.$infocommande.'","'.$lieu.'","'.$Email.'","'.$etat.'")';
 
 
 

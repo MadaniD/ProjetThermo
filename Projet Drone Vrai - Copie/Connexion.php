@@ -42,12 +42,11 @@ if (isset ($_GET['valider'])) {
     $dsn = 'mysql:host=51.210.151.13;dbname=thermoDrone';
 
     $user = 'thermodrone';
-    $password = 'issam93@';
+    $password = 'thermodrone';
 
 
     //On se connecte
     $con = connectMaBase();
-
     $query = "SELECT password,email FROM thermoDrone.CompteClients WHERE password=? AND email=?";
     $stmt = $con->prepare($query);
     if (isset($stmt)) {
