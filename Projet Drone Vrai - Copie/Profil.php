@@ -23,6 +23,9 @@ if(isset($_SESSION['Email'])) {
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-position: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
         </style>
     </head>
     <body>
@@ -39,7 +42,7 @@ if(isset($_SESSION['Email'])) {
                                     <img class="img-fluid" src="assets/img/profil.png" width="150">
                                 </div>
                                 <h4 class="mb-2"><?php echo $userinfo['lastname']; ?> <?php echo $userinfo['name']; ?></h4>
-                                <p class="text-muted mb-4"> Email= <?php echo $userinfo['email']; ?><span class="mx-2">|</span> Etat= <?php echo $userinfo['etat']; ?></p>
+                                <p class="text-muted mb-4"> Email= <?php echo $userinfo['email']; ?><span class="mx-2">|</span> Intervention= <?php echo $userinfo['etat']; ?></p>
                             </div>
                         </div>
 
