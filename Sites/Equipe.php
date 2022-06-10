@@ -13,7 +13,7 @@ or die ('Could not connect to the database server' . mysqli_connect_error());
 
 echo "<html>
 <head>
-    <title>Modification de l'adresse d'un propriétaire</title>
+    <h1>Appliquer les missions au techniciens</h1>
 </head>
     <head>
         <title>Chef d'équipe</title>
@@ -27,7 +27,6 @@ echo"<select>
               <optgroup label=\"technicien\">
 ";
 $query = "SELECT email FROM thermoDrone.CompteEntreprise";
-
 if ($stmt = $con->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result( $field2);
@@ -36,10 +35,30 @@ if ($stmt = $con->prepare($query)) {
     }
     $stmt->close();
 }
-
 echo"
                 </optgroup>
             </select>";
+
+
+echo"<select>
+              <optgroup label=\"mission\">
+";
+$query = "SELECT idCommande FROM thermoDrone.Commande";
+if ($stmt = $con->prepare($query)) {
+    $stmt->execute();
+    $stmt->bind_result( $field2);
+    while ($stmt->fetch()) {
+        echo"<option>{$field2}</option>";
+    }
+    $stmt->close();
+}
+echo"
+                </optgroup>
+            </select>";
+
+
+
+
 
 echo "
      </nav>

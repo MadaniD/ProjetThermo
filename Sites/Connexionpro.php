@@ -14,9 +14,9 @@
 <body>
 <div class="text-center">
     <div class="container text-center">
-        <form class="align-content-center" id="contactForm" action="Connexion.php" method="GET">
+        <form class="align-content-center" id="contactForm" action="Connexionpro.php" method="GET">
             <fieldset style="width: 542px;">
-                <legend style="font-style: normal;font-weight: bold;font-size: 28px;">Formulaire de Connexion</legend>
+                <legend style="font-style: normal;font-weight: bold;font-size: 28px;">Connexion Techniciens </legend>
             </fieldset>
             <div class="row text-start" style="padding: 0px;">
                 <div class="col-md-6" id="message-2" style="width: 682px;">

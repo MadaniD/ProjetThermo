@@ -75,10 +75,18 @@ if (isset ($_POST['valider'])){
 
     //On se connecte
     $con = connectMaBase();
-    $random=rand(10 , 500 );
+
+    $sqlnbr = "SELECT idCommande from thermoDrone.Commande";
+
+    if ($result = mysqli_query($con, $sqlnbr)) {
+        // Retourne le nombre de ligne de la colone commande idcommande
+        $rowcount = mysqli_num_rows( $result );
+    }
+    //Rajoute +1 selon le nombre de ligne 
+    $nbrid=$rowcount+1;
     $etat="non";
     //On prépare la commande sql d'insertion
-    $sql = 'INSERT INTO Commande (idCommande, infocommande, lieu, CompteClients_email,etat)  VALUES("'.$random.'","'.$infocommande.'","'.$lieu.'","'.$Email.'","'.$etat.'")';
+    $sql = 'INSERT INTO Commande (idCommande, infocommande, lieu, CompteClients_email,etat)  VALUES("'.$nbrid.'","'.$infocommande.'","'.$lieu.'","'.$Email.'","'.$etat.'")';
 
 
 
