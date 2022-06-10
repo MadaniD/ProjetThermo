@@ -27,9 +27,7 @@
             <div class="row text-center d-xl-flex justify-content-xl-start">
                 <div class="col"><button class="btn btn-primary text-center d-block w-100" type="submit" style="width: 300px;height: 45px;margin: 25px;margin-top: 0px;background-color: #ff0000;">Annuler<i class="typcn typcn-delete-outline"></i></button></div>
                 <div class="col"><button class="btn btn-primary text-center d-block w-100" type="submit" name="valider" style="width: 300px;height: 45px;margin: 25px;margin-top: 0px;background-color: #ff0000;">Envoyer<i class="typcn typcn-delete-outline"></i></button></div>
-                <div class="col text-start d-xl-flex" style="padding-right: 50px;" class="btn btn-primary text-center d-block w-100" class="nav-item"><a class="nav-link" href="Inscription.php">CREER UN COMPTE</a><i class="fa fa-chevron-circle-right"></i></div>
-                <div class="col text-start d-xl-flex" style="padding-right: 50px;" class="btn btn-primary text-center d-block w-100" class="nav-item"><a class="nav-link" href="Connexionpro.php">Compte pro</a><i class="fa fa-chevron-circle-right"></i></div>
-            </div>
+                </div>
         </form>
     </div>
 </div>
@@ -48,7 +46,7 @@ if (isset ($_GET['valider'])) {
 
     //On se connecte
     $con = connectMaBase();
-    $query = "SELECT password,email FROM thermoDrone.CompteClients WHERE password=? AND email=?";
+    $query = "SELECT password,email FROM thermoDrone.CompteEntreprise WHERE password=? AND email=?";
     $stmt = $con->prepare($query);
     if (isset($stmt)) {
         //Compare les donnees rentrer par le client avec la bdd
@@ -62,7 +60,7 @@ if (isset ($_GET['valider'])) {
         if (!empty($tab)) {
             session_start();
             $_SESSION['Email']=$field2;
-            header('location:index2.php');
+            header('location:Equipe.php');
         } else {
             echo "Mot de passe faux";
         }
