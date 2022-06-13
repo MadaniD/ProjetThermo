@@ -46,7 +46,7 @@ if (isset ($_GET['valider'])) {
 
     //On se connecte
     $con = connectMaBase();
-    $query = "SELECT password,email FROM thermoDrone.CompteEntreprise WHERE password=? AND email=?";
+    $query = "SELECT password,email FROM thermoDrone.CompteEntreprise WHERE password=? AND email=? AND level='chef'";
     $stmt = $con->prepare($query);
     if (isset($stmt)) {
         //Compare les donnees rentrer par le client avec la bdd

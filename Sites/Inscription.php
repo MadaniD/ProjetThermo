@@ -50,7 +50,7 @@ if (isset ($_POST['valider'])){
     $MDP=$_POST['MDP'];
     $Email=$_POST['Email'];
     $Telephone=$_POST['Telephone'];
-    $Domicile=$_POST['Domicile'];
+
 
     //On se connecte
     $con = connectMaBase();
@@ -61,7 +61,7 @@ if (isset ($_POST['valider'])){
     /*on lance la commande (mysql_query) et au cas où,
     on rédige un petit message d'erreur si la requête ne passe pas (or die)
     (Message qui intègrera les causes d'erreur sql)*/
-    mysqli_query ($con,$sql) or die ('Erreur SQL !'.$sql.'<br />'.mysqli_error($con));
+    mysqli_query ($con,$sql) or die ('Formulaire incomplet ou mal remplie');
 
     header('Location: connexion.php');
 
